@@ -3,12 +3,25 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 
 import signinImage from "../assets/signup.jpg";
-
+const initialState = {
+  fullName: "",
+  username: "",
+  password: "",
+  confirmPassword: "",
+  phoneNumber: "",
+  avatarURL: "",
+};
 const Auth = () => {
+  const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(true);
 
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="auth__form-container">
