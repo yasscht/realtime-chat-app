@@ -23,6 +23,19 @@ const ChannelListContainer = () => {
             />
           )}
         />
+        <ChannelList
+          filters={{}}
+          channelRenderFilterFn={() => {}}
+          List={(listProps) => (
+            <TeamChannelList
+              {...listProps}
+              type="messaging"
+              preview={(previewProps) => (
+                <TeamChannelPreview {...previewProps} type="messaging" />
+              )}
+            />
+          )}
+        />
       </div>
     </>
   );
