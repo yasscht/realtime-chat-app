@@ -4,8 +4,24 @@ import Cookies from "universal-cookie";
 import { ChannelListContainer, ChannelContainer, Auth } from "./components";
 import "./App.css";
 const API_KEY = "y2bazebtxmnw";
+const cookies = new Cookies();
 const client = StreamChat.getInstance(API_KEY);
-const authToken = false;
+
+const authToken = cookies.get("token");
+if (authToken) {
+  client.connectUser(
+    {
+      token: cookies.get("token"),
+      name: cookies.get("username"),
+      fullName: cookies.get("fullName"),
+      id: cookies.get("userId"),
+      phoneNumber: cookies.get("phoneNumber"),
+      image: cookies.get("avatarUrl"),
+      hashedPassword: cookies.get("hashedPassword"),
+    },
+    authToken
+  );
+}
 function App() {
   if (!authToken) return <Auth />;
   return (
